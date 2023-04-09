@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+
+  app:
+    image: app:0.0.1
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/rails
+      - ruby-bundle:/bundle
+      - node-modules:/rails/node_modules
+    environment:
+      NODE_ENV: ${RAILS_ENV:-development}
+      RAILS_ENV: ${RAILS_ENV:-development}
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:15-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+
+networks:
+  default:
+
+volumes:
+  ruby-bundle:
+  node-modules:
+  postgres:
