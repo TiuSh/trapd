@@ -31,7 +31,10 @@ setup() {
 
   print_status "Building the application"
   exec_cmd "docker compose build app"
-  exec_cmd "docker compose run --rm -T app rails new /rails -d postgresql -m $REPOSITORY/template.rb"
+
+  echo "What is your project named?"
+  read app_name
+  exec_cmd "docker compose run --rm -T app rails new /rails -n $app_name -d postgresql -m $REPOSITORY/template.rb"
 
   print_status "It's a trap!"
 }

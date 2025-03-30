@@ -1,11 +1,11 @@
 # trapd
 
-![It's a trap!](https://media.giphy.com/media/3ornka9rAaKRA2Rkac/giphy.gif)
+![It's a trap!](https://raw.githubusercontent.com/TiuSh/trapd/main/its_a_trap.gif)
 
 ## Usage
 
 ```bash
-$ curl -sL https://raw.githubusercontent.com/TiuSh/trapd/main/setup.x | bash -
+$ bash -c "$(curl -fsSL https://raw.githubusercontent.com/TiuSh/trapd/main/setup.x)"
 $ trapd rails server
 ```
 

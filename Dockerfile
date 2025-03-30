@@ -1,11 +1,11 @@
-ARG RUBY_VERSION=3.2.2
+ARG RUBY_VERSION=3.2.8
 
 FROM ruby:$RUBY_VERSION-slim
 
-ARG RAILS_VERSION=7
+ARG RAILS_VERSION=8
 ARG BUNDLER_VERSION=2
-ARG NODE_VERSION=19
-ARG PG_VERSION=15
+ARG NODE_VERSION=22
+ARG PG_VERSION=17
 
 # Install dependencies
 RUN apt-get update -qq && \
@@ -26,7 +26,9 @@ RUN apt-get update -qq && \
 RUN curl -sL https://deb.nodesource.com/setup_$NODE_VERSION.x | bash -
 
 # Install node and npm
-RUN apt-get update -qq && apt-get install -y nodejs && npm install -g npm@$NPM_VERSION
+RUN apt-get update -qq && \
+    apt-get install -y nodejs && \
+    npm install -g npm@$NPM_VERSION
 
 # Mount $PWD to this workdir
 WORKDIR /rails
